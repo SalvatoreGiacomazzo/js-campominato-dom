@@ -57,12 +57,14 @@ const spawnCell = () => {
 //recupero elementi dal dom
 const grid = document.getElementById('grid')
 const playButton = document.getElementById('playbutton')
+let playerScore = document.getElementById('score')
 
 //altre opzioni di preparazione
 
 const rowGrid = 10;
 const colGrid = 10;
 const fullGrid = rowGrid * colGrid;
+playerScore = 0;
 
 //Imposto la grid inizialmente come invisibile
 
@@ -73,15 +75,28 @@ for (let i = 0; i < fullGrid; i++ ){
     const singleCell = spawnCell(); // Creazione della cella tramite la funzione
 
     singleCell.textContent = i + 1;
-  
+   
     singleCell.addEventListener('click', function() { //Gestione della classe 'clicked'
+        if (singleCell.classList.contains('clicked')) return; // Fermiamo la funzione per impedire punti infiniti
         singleCell.classList.toggle('clicked');
         console.log(i + 1); //Stampa in console del numero al click come richiesto in traccia
+       // ! Gestione dello score
+      playerScore++;
+      console.log(playerScore)
+      document.getElementById("score").innerHTML =  `${playerScore} ` //Stampa in pagina del punteggio
+         
+     
+
     });
     grid.appendChild(singleCell) // Stampa in pagina
+    
 }
 // ! Evento del click e apparizione della griglia
 
 playButton.addEventListener('click', function () {
     grid.style.display = 'flex'; // Mostra la griglia cambiando lo stile display
 });
+
+// ! Evento del click delle caselle 
+
+

@@ -56,21 +56,18 @@ const spawnCell = () => {
 
 // Funzione che genera le bombe
 const spawnBombs = (fullGrid, clusterBombs) => {
-    const bombs = [];           //Array di 16 numeri delle bombe
-   while(bombs.length < clusterBombs){    //ciclo while = fintanto che il totale delle bombe è maggiore della lunghezza dell'array deve generare un numero
-   const bombCell = Math.floor(Math.random() * fullGrid) + 1    
-   bombs.push(bombCell);
+    const bombs = []; // Array delle 16 bombe
 
-   if (!bombs.includes(bombCell)) { // Mi assicuro che siano tutti numeri diversi
-    bombs.push(bombCell);
-}
+    while (bombs.length < clusterBombs) { // Ciclo fintanto che non abbiamo il numero desiderato di bombe
+        const bombCell = Math.floor(Math.random() * fullGrid) + 1;
 
-   }
-
+        if (!bombs.includes(bombCell)) {      //Impediamo la generazione dello stesso numero
+            bombs.push(bombCell);
+        }
+    }
 
     return bombs;
 }
-
 
 //recupero elementi dal dom
 const grid = document.getElementById('grid')
@@ -86,6 +83,7 @@ playerScore = 0;
 const clusterBombs = 16; 
 const maxScore = fullGrid - clusterBombs;
 
+
 //Imposto la grid inizialmente come invisibile
 
 grid.style.display = 'none';
@@ -98,12 +96,32 @@ for (let i = 0; i < fullGrid; i++ ){
    
     singleCell.addEventListener('click', function() { //Gestione della classe 'clicked'
     if (singleCell.classList.contains('clicked')) return; // Fermiamo la funzione per impedire punti infiniti
+      
+    
+
+
         singleCell.classList.toggle('clicked');
         console.log(i + 1); //Stampa in console del numero al click come richiesto in traccia
        // ! Gestione dello score
       playerScore++;
       console.log(playerScore)
       document.getElementById("score").innerHTML =  `${playerScore} ` //Stampa in pagina del punteggio
+
+     if (playerScore === maxScore){
+        alert('Congratulations, you survived! (refresh the page to play again)')
+        document.getElementById("score").innerHTML =  `You won with ${playerScore} points! ` 
+     }
+
+
+
+
+
+      if (bombs.includes(i + 1)){   //Stampiamo in console un messaggio se viene cliccata una bomba
+       singleCell.classList.add('bomb')
+       
+       alert('YOU STEPPED INTO A BOMB, RUN!! (refresh the page to play again)')
+       document.getElementById("score").innerHTML =  `You lost with ${playerScore} points!` 
+     }
          
      
 

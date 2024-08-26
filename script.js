@@ -39,10 +39,10 @@ Se l'utente clicca su una delle 16 celle programmate come bombe, il gioco finisc
 
 MILESTONE 4
 Quando l'utente clicca su una cella, controllare se ci sono ancora celle (non bombe) disponibili, se non ci sono l'utente ha vinto
-Termina la partita e segnala la vincita.
+Termina la partita e segnala la vincita. 
 
 MILESTONE 5
-Quando la partita termina dobbiamo capire se è terminata perchè è stata cliccata una bomba o seperchè l'utente ha raggiunto il punteggio massimo(ossia ha vinto). Dobbiamo poi in ogni caso stampare lin pagina il punteggio raggiunto ed il messaggio adeguato in caso di vittoria o sconfitta.
+Quando la partita termina dobbiamo capire se è terminata perchè è stata cliccata una bomba o seperchè l'utente ha raggiunto il punteggio massimo(ossia ha vinto). Dobbiamo poi in ogni caso stampare in pagina il punteggio raggiunto ed il messaggio adeguato in caso di vittoria o sconfitta.
 */
 
 

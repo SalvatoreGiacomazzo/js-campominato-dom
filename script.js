@@ -54,6 +54,24 @@ const spawnCell = () => {
     return singleCell;
 };
 
+// Funzione che genera le bombe
+const spawnBombs = (fullGrid, clusterBombs) => {
+    const bombs = [];           //Array di 16 numeri delle bombe
+   while(bombs.length < clusterBombs){    //ciclo while = fintanto che il totale delle bombe è maggiore della lunghezza dell'array deve generare un numero
+   const bombCell = Math.floor(Math.random() * fullGrid) + 1    
+   bombs.push(bombCell);
+
+   if (!bombs.includes(bombCell)) { // Mi assicuro che siano tutti numeri diversi
+    bombs.push(bombCell);
+}
+
+   }
+
+
+    return bombs;
+}
+
+
 //recupero elementi dal dom
 const grid = document.getElementById('grid')
 const playButton = document.getElementById('playbutton')
@@ -65,6 +83,8 @@ const rowGrid = 10;
 const colGrid = 10;
 const fullGrid = rowGrid * colGrid;
 playerScore = 0;
+const clusterBombs = 16; 
+const maxScore = fullGrid - clusterBombs;
 
 //Imposto la grid inizialmente come invisibile
 
@@ -77,7 +97,7 @@ for (let i = 0; i < fullGrid; i++ ){
     singleCell.textContent = i + 1;
    
     singleCell.addEventListener('click', function() { //Gestione della classe 'clicked'
-        if (singleCell.classList.contains('clicked')) return; // Fermiamo la funzione per impedire punti infiniti
+    if (singleCell.classList.contains('clicked')) return; // Fermiamo la funzione per impedire punti infiniti
         singleCell.classList.toggle('clicked');
         console.log(i + 1); //Stampa in console del numero al click come richiesto in traccia
        // ! Gestione dello score
@@ -97,6 +117,10 @@ playButton.addEventListener('click', function () {
     grid.style.display = 'flex'; // Mostra la griglia cambiando lo stile display
 });
 
-// ! Evento del click delle caselle 
+// ! Inserimento delle bombe
+const bombs = spawnBombs(fullGrid, clusterBombs);   
+console.log(bombs)  //Stampa in console dei 16 numeri delle bombe
+
+
 
 

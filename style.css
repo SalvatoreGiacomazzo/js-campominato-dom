@@ -55,6 +55,7 @@
     .cell.clicked{
         background-color: rgb(227, 151, 245);
         color: black;
+        cursor:not-allowed;
     }
     
     
